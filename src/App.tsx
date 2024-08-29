@@ -25,7 +25,7 @@ const Home : React.FC  = () => {
   return (
     <div>
       <ToastContainer />
-      <div className="flex flex-col bg-gray-300 md:p-20 p-5">
+      <div className="flex flex-col bg-gray-50 md:p-20 p-5">
 
 
         <div className="flex flex-row justify-center items-center md:p-10 md:gap-3 sm:p-5 sm:gap-2 bg-purple-600 border-2 border-purple-950 rounded-2xl">

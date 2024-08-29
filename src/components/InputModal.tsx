@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { toast } from 'react-toastify';
 import { FormValues } from '../types/formvalues'
 import * as Yup from 'yup';
 import { saveNoteToLocalDb } from '../lib/db';
+import { InputModalProps } from '../types/inputModalProps';
+import { NoteProps } from '../types/note';
 
-const InputModal : React.FC = () => {
+const InputModal : React.FC <InputModalProps> = ({ onNoteSave }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const openForm = () =>  setIsOpen(true);
@@ -23,13 +26,18 @@ const InputModal : React.FC = () => {
     })
     const onSubmit = async (values: FormValues) => {
 
-        const formData = {
+        const formData : NoteProps = {
             ...values,
-            timestamp: new Date().toISOString()
+            timestamp: new Date()
         };
 
         await saveNoteToLocalDb(formData);
 
+        toast.success("Note saved successfully");
+        onNoteSave(formData);
+        setTimeout(() => {
+            closeForm();
+        }, 1500);
         console.log("Form data: ", formData);
     }
 

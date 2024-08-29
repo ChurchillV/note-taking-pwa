@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { NoteProps } from '../types/note'
 
 const Note : React.FC<NoteProps> = ({ title, summary, body, timestamp }) => {
-    const date = new Date(timestamp);
+    const date = new Date(timestamp).toISOString();
   return (
     <div className="flex flex-col p-4 px-5 rounded-md bg-purple-300 my-5">
         <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
